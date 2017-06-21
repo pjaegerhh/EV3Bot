@@ -27,11 +27,10 @@ var luisAPIKey = process.env.LuisAPIKey;
 var luisAPIHostName = process.env.LuisAPIHostName || 'westus.api.cognitive.microsoft.com';
 
 const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' + luisAppId + '&subscription-key=' + luisAPIKey;
+session.send(LuisModelUrl);
 
 // Main dialog with LUIS
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
-var intents = new builder.IntentDialog({ recognizers: [recognizer] })
-
 bot.recognizer(recognizer);
 bot.dialog('pjEV3_help', function (session) {
 
@@ -40,12 +39,21 @@ bot.dialog('pjEV3_help', function (session) {
 }).triggerAction({
     matches: 'pjEV3_help'
 });
-/*
+
+
+/* var intents = new builder.IntentDialog({ recognizers: [recognizer] })
+
+    .matches(('pjEV3_help') => {
+
+    session.send('Hi ! Versuche doch mal folgende Kommandos : Fahre Vorwärts, Fahre Rückwärts');
+});
+
 .matches('<yourIntent>')... See details at http://docs.botframework.com/builder/node/guides/understanding-natural-language/
-*/
+
 .onDefault((session) => {
     session.send('Sorry, das habe ich leider nicht verstanden \'%s\'.', session.message.text);
 });
+*/
 
 bot.dialog('/', intents);    
 
