@@ -27,7 +27,8 @@ var luisAPIKey = process.env.LuisAPIKey;
 var luisAPIHostName = process.env.LuisAPIHostName || 'westus.api.cognitive.microsoft.com';
 
 const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' + luisAppId + '&subscription-key=' + luisAPIKey;
-session.send(LuisModelUrl);
+
+console.log('%s listening to %s', LuisModelUrl, luisAppId);
 
 // Main dialog with LUIS
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
@@ -55,7 +56,7 @@ bot.dialog('pjEV3_help', function (session) {
 });
 */
 
-bot.dialog('/', intents);    
+//bot.dialog('/', intents);    
 
 if (useEmulator) {
     var restify = require('restify');
