@@ -10,6 +10,8 @@ using System.Text;
 
 
 // For more information about this template visit http://aka.ms/azurebots-csharp-luis
+
+
 [Serializable]
 public class BasicLuisDialog : LuisDialog<object>
 {
@@ -29,21 +31,21 @@ public class BasicLuisDialog : LuisDialog<object>
 
 
 
-    [LuisIntent("Start")]
-    public async Task StartIntent(IDialogContext context, LuisResult result)
-    {
-        await context.PostAsync($"You have reached the Start intent. You said: {result.Query}"); 
-        context.Wait(MessageReceived);
+//    [LuisIntent("Start")]
+//    public async Task StartIntent(IDialogContext context, LuisResult result)
+//    {
+//        await context.PostAsync($"You have reached the Start intent. You said: {result.Query}"); 
+//        context.Wait(MessageReceived);
 //        await context.PostAsync($"Hallo und herzlich willkommen beim EV3 Bot !"); 
 //        context.Wait(MessageReceived);
 //        await context.PostAsync($"Wenn Du Hilfe brauchst sage "Hilfe" oder "Help"); 
 //        context.Wait(MessageReceived);
-    }
+//    }
 
     [LuisIntent("pjEV3_help")]
     public async Task HelpIntent(IDialogContext context, LuisResult result)
     {
-        await context.PostAsync($"You have reached the Help intent. You said: {result.Query}"); //
+        await context.PostAsync($"Hilfe !. You said: {result.Query}"); //
         context.Wait(MessageReceived);
     }
 

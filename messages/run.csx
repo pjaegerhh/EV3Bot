@@ -45,7 +45,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                         var newMembers = update.MembersAdded?.Where(t => t.Id != activity.Recipient.Id);
                         foreach (var newMember in newMembers)
                         {
-                            reply.Text = "Welcome";
+                            reply.Text = "Herzlich willkommen. Der BOT startet gerade neu";
                             if (!string.IsNullOrEmpty(newMember.Name))
                             {
                                 reply.Text += $" {newMember.Name}";
@@ -60,7 +60,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                 case ActivityTypes.DeleteUserData:
                 case ActivityTypes.Ping:
                 default:
-                    log.Error($"Unknown activity type ignored: {activity.GetActivityType()}");
+                    log.Error($"Diese Aktivität kenne ich nicht: {activity.GetActivityType()}");
                     break;
             }
         }
