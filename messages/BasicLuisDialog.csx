@@ -5,6 +5,9 @@ using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
+using System.Net;
+using System.Text;
+
 
 // For more information about this template visit http://aka.ms/azurebots-csharp-luis
 [Serializable]
@@ -34,5 +37,8 @@ public class BasicLuisDialog : LuisDialog<object>
     {
         await context.PostAsync($"You have reached the Fahren intent. You said: {result.Query}"); //
         context.Wait(MessageReceived);
+        var request = (HttpWebRequest)WebRequest.Create("http://csev3lego.azurewebsites.net/move/forward");
+        var response = (HttpWebResponse)request.GetResponse();
+        var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
     }
 }
