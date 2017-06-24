@@ -30,7 +30,7 @@ public class BasicLuisDialog : LuisDialog<object>
 
 
     [LuisIntent("Start")]
-    public async Task HelpIntent(IDialogContext context, LuisResult result)
+    public async Task StartIntent(IDialogContext context, LuisResult result)
     {
         await context.PostAsync($"You have reached the Start intent. You said: {result.Query}"); //
         context.Wait(MessageReceived);
