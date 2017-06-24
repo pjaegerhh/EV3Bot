@@ -20,7 +20,7 @@ public class BasicLuisDialog : LuisDialog<object>
     [LuisIntent("None")]
     public async Task NoneIntent(IDialogContext context, LuisResult result)
     {
-        await context.PostAsync($"You have reached the none intent. You said: {result.Query}"); //
+        await context.PostAsync($"Diesen Befehl verstehe ich nicht: {result.Query}"); //
         context.Wait(MessageReceived);
     }
 
@@ -32,12 +32,12 @@ public class BasicLuisDialog : LuisDialog<object>
     [LuisIntent("Start")]
     public async Task StartIntent(IDialogContext context, LuisResult result)
     {
-        await context.PostAsync($"You have reached the Start intent. You said: {result.Query}"); //
+        await context.PostAsync($"You have reached the Start intent. You said: {result.Query}"); 
         context.Wait(MessageReceived);
-        await context.PostAsync($"Hallo und herzlich willkommen beim EV3 Bot !"); //
-        context.Wait(MessageReceived);
-        await context.PostAsync($"Wenn Du Hilfe brauchst sage "Hilfe" oder "Help"); //
-        context.Wait(MessageReceived);
+//        await context.PostAsync($"Hallo und herzlich willkommen beim EV3 Bot !"); 
+//        context.Wait(MessageReceived);
+//        await context.PostAsync($"Wenn Du Hilfe brauchst sage "Hilfe" oder "Help"); 
+//        context.Wait(MessageReceived);
     }
 
     [LuisIntent("pjEV3_help")]
