@@ -35,8 +35,8 @@ public class BasicLuisDialog : LuisDialog<object>
     public async Task StartIntent(IDialogContext context, LuisResult result)
     {
         await context.PostAsync($"You have reached the Start intent. You said: {result.Query}"); 
-        await context.PostAsync($"Hallo und herzlich willkommen beim EV3 Bot !"); 
-        await context.PostAsync($"Wenn Du Hilfe brauchst sage "Hilfe" oder "Help"); 
+        await context.PostAsync("Hallo und herzlich willkommen beim EV3 Bot !"); 
+        await context.PostAsync("Wenn Du Hilfe brauchst sage "Hilfe" oder "Help"); 
         context.Wait(MessageReceived);
     }
 
