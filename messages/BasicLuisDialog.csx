@@ -58,7 +58,7 @@ public class BasicLuisDialog : LuisDialog<object>
         var request = (HttpWebRequest)WebRequest.Create("http://csev3lego.azurewebsites.net/move/forward");
         var response = (HttpWebResponse)request.GetResponse();
         var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-        await context.PostAsync($"You have reached the Help intent. You said: {responeString}"); //
+        await context.PostAsync($"You have reached the Help intent. You said: {responseString}"); //
         context.Wait(MessageReceived);
 
     }
