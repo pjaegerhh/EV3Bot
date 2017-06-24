@@ -5,6 +5,7 @@ using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
+
 using System.Net;
 using System.Text;
 
@@ -22,7 +23,7 @@ public class BasicLuisDialog : LuisDialog<object>
     [LuisIntent("None")]
     public async Task NoneIntent(IDialogContext context, LuisResult result)
     {
-        await context.PostAsync($"Diesen Befehl verstehe ich nicht: {result.Query}"); //
+        await context.PostAsync($"Diesen Befehl verstehe ich nicht: {result.Query}"); 
         context.Wait(MessageReceived);
     }
 
@@ -35,15 +36,15 @@ public class BasicLuisDialog : LuisDialog<object>
     public async Task StartIntent(IDialogContext context, LuisResult result)
     {
         await context.PostAsync($"You have reached the Start intent. You said: {result.Query}"); 
-        await context.PostAsync("Hallo und herzlich willkommen beim EV3 Bot !"); 
-        await context.PostAsync("Wenn Du Hilfe brauchst sage "Hilfe" oder "Help"); 
+//        await context.PostAsync("Hallo und herzlich willkommen beim EV3 Bot !"); 
+//        await context.PostAsync("Wenn Du Hilfe brauchst sage "Hilfe" oder "Help"); 
         context.Wait(MessageReceived);
     }
 
     [LuisIntent("pjEV3_help")]
     public async Task HelpIntent(IDialogContext context, LuisResult result)
     {
-        await context.PostAsync($"Hilfe !. You said: {result.Query}"); //
+        await context.PostAsync($"Hilfe !. You said: {result.Query}"); 
         context.Wait(MessageReceived);
     }
 
@@ -51,12 +52,12 @@ public class BasicLuisDialog : LuisDialog<object>
     [LuisIntent("Fahren")]
     public async Task FahrenIntent(IDialogContext context, LuisResult result)
     {
-        await context.PostAsync($"You have reached the Fahren intent. You said: {result.Query}"); //
+        await context.PostAsync($"You have reached the Fahren intent. You said: {result.Query}"); 
         context.Wait(MessageReceived);
         var request = (HttpWebRequest)WebRequest.Create("http://csev3lego.azurewebsites.net/move/forward");
         var response = (HttpWebResponse)request.GetResponse();
         var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-//        await context.PostAsync($"You have reached the Help intent. You said: {responseString}"); //
+//        await context.PostAsync($"You have reached the Help intent. You said: {responseString}"); 
 //        context.Wait(MessageReceived);
 
     }
