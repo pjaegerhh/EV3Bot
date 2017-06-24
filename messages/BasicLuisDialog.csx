@@ -26,12 +26,25 @@ public class BasicLuisDialog : LuisDialog<object>
 
     // Go to https://luis.ai and create a new intent, then train/publish your luis app.
     // Finally replace "MyIntent" with the name of your newly created intent in the following handler
+
+
+
+    [LuisIntent("Start")]
+    public async Task HelpIntent(IDialogContext context, LuisResult result)
+    {
+        await context.PostAsync($"Hallo und herzlich willkommen beim EV3 Bot !"); //
+        await context.PostAsync($"Wenn Du Hilfe brauchst sage "Hilfe" oder "Help"); //
+        context.Wait(MessageReceived);
+    }
+
     [LuisIntent("pjEV3_help")]
     public async Task HelpIntent(IDialogContext context, LuisResult result)
     {
         await context.PostAsync($"You have reached the Help intent. You said: {result.Query}"); //
         context.Wait(MessageReceived);
     }
+
+
     [LuisIntent("Fahren")]
     public async Task FahrenIntent(IDialogContext context, LuisResult result)
     {
@@ -40,5 +53,8 @@ public class BasicLuisDialog : LuisDialog<object>
         var request = (HttpWebRequest)WebRequest.Create("http://csev3lego.azurewebsites.net/move/forward");
         var response = (HttpWebResponse)request.GetResponse();
         var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+        await context.PostAsync($"You have reached the Help intent. You said: {responeString}"); //
+        context.Wait(MessageReceived);
+
     }
 }
